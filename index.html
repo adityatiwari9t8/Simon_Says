@@ -3,22 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon Says Game</title>
+    <title>Simon Pro</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Simon Says Game</h1>
-    <h2>Press any key to start the game</h2>
+    <div class="app-container">
+      <h1>Simon Says</h1>
 
-    <div class="btn-container">
-      <div class="line-one">
-        <div class="btn red" type="button" id="red">1</div>
-        <div class="btn yellow" type="button" id="yellow">2</div>
+      <div class="scoreboard">
+        <div class="score-box">
+          <span class="score-label">Level</span>
+          <span id="level-display" class="score-val">0</span>
+        </div>
+        <div class="score-box high">
+          <span class="score-label">High Score</span>
+          <span id="high-score-display" class="score-val">0</span>
+        </div>
       </div>
-      <div class="line-two">
-        <div class="btn green" type="button" id="green">3</div>
-        <div class="btn purple" type="button" id="purple">4</div>
+
+      <p id="status-text">Press Start to Play</p>
+
+      <div class="game-board">
+        <!-- Top Row -->
+        <div class="btn red" id="red"></div>
+        <div class="btn yellow" id="yellow"></div>
+        
+        <!-- Bottom Row -->
+        <div class="btn green" id="green"></div>
+        <div class="btn purple" id="purple"></div>
+        
+        <!-- Center Decoration -->
+        <div class="center-circle"></div>
       </div>
+
+      <button id="start-btn" class="action-btn">Start Game</button>
     </div>
 
     <script src="app.js"></script>

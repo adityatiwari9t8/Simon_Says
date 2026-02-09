@@ -1,40 +1,214 @@
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-color: #f8fafc;
+  
+  /* Neon Colors */
+  --color-red: #ef4444;
+  --color-yellow: #eab308;
+  --color-green: #22c55e;
+  --color-purple: #a855f7;
+  
+  --btn-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.app-container {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   text-align: center;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.score-box {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.score-label {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.score-val {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.score-box.high .score-val {
+  color: #fbbf24; /* Gold for high score */
+}
+
+#status-text {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  min-height: 1.5rem;
+}
+
+/* Game Board - Grid Layout */
+.game-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  background: #334155;
+  padding: 15px;
+  border-radius: 50%; /* Makes the container round */
+  position: relative;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
 .btn {
-  height: 200px;
-  width: 200px;
-  border-radius: 20%;
-  border: 10px solid black;
-  margin: 2.5rem;
+  height: 140px;
+  width: 140px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  border: 4px solid rgba(0,0,0,0.1);
+  opacity: 0.7; /* Dim by default */
 }
 
-.btn-container {
-  display: flex;
-  justify-content: center;
+/* Specific Shapes for "Round" feel */
+.btn.red { 
+    background-color: var(--color-red); 
+    border-top-left-radius: 100%; 
+}
+.btn.yellow { 
+    background-color: var(--color-yellow); 
+    border-top-right-radius: 100%; 
+}
+.btn.green { 
+    background-color: var(--color-green); 
+    border-bottom-left-radius: 100%; 
+}
+.btn.purple { 
+    background-color: var(--color-purple); 
+    border-bottom-right-radius: 100%; 
 }
 
-.yellow {
-  background-color: #f99b45;
+/* Center Decoration */
+.center-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: var(--card-bg);
+  border-radius: 50%;
+  border: 8px solid #334155;
+  z-index: 10;
 }
 
-.red {
-  background-color: #d95980;
+/* Interactions */
+.btn:active {
+  transform: scale(0.96);
 }
 
-.purple {
-  background-color: #819ff9;
-}
-
-.green {
-  background-color: #63aac0;
-}
-
+/* Flash Class (For Game & User) */
 .flash {
-  background-color: white;
+  opacity: 1;
+  background-color: white !important;
+  box-shadow: 0 0 20px white;
 }
 
-.userflash {
-  background-color: green;
+.user-press {
+  opacity: 1;
+  transform: scale(0.95);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Action Button */
+.action-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: 700;
+  background: linear-gradient(135deg, #60a5fa, #8b5cf6);
+  color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+}
+
+.action-btn:active {
+  transform: scale(0.95);
+}
+
+/* Game Over Effect */
+.game-over-anim {
+  animation: shake 0.5s;
+  background-color: #450a0a; /* Dark Red tint */
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@media (max-width: 400px) {
+    .btn {
+        height: 100px;
+        width: 100px;
+    }
 }
