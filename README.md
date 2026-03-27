@@ -2,8 +2,6 @@
 
 > Classic memory challenge with color, sound, and timing — now in a clean, modern browser UI.
 
-![Simon Says Game Screenshot](./screenshot.png)
-
 ## 🚀 Quick Start
 
 ### Option 1: Open locally
